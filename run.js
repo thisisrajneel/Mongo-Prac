@@ -6,10 +6,11 @@ mongoose.connect('mongodb://localhost:27017/fruitsDB')
 
 // defining a schema
 const fruitSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'Name of the fruit is required!']
-    },
+    // name: {
+    //     type: String,
+    //     required: [true, 'Name of the fruit is required!']
+    // },
+    name: String,
     rating: {
         type: Number,
         min: 1,
@@ -26,7 +27,7 @@ const fruit = new Fruits({
     review: 'Docs stay away!'
 })
 
-fruit.save()
+//fruit.save()
 
 // practice
 const personSchema = new mongoose.Schema({
@@ -63,12 +64,20 @@ const arr = [mango, orange, litchi]
 
 // Fruits.insertMany(arr, err => {console.log(err);})
 
-
-Fruits.find((err, fruits) => {
+Fruits.updateOne({__id: "61ed37880da8d69502dd9050"}, {name: 'Peach'}, (err) => {
     if(err) {
         console.log(err);
     }
     else {
-        fruits.map(f => console.log(f.name));
+        console.log('Updated successfully!');
     }
 })
+
+// Fruits.find((err, fruits) => {
+//     if(err) {
+//         console.log(err);
+//     }
+//     else {
+//         fruits.map(f => console.log(f));
+//     }
+// })
