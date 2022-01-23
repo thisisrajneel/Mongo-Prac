@@ -64,12 +64,21 @@ const arr = [mango, orange, litchi]
 
 // Fruits.insertMany(arr, err => {console.log(err);})
 
-Fruits.updateOne({__id: "61ed37880da8d69502dd9050"}, {name: 'Peach'}, (err) => {
+// Fruits.updateOne({__id: "61ed37880da8d69502dd9050"}, {name: 'Peach'}, (err) => {
+//     if(err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log('Updated successfully!');
+//     }
+// })
+
+Fruits.deleteOne({name: 'Peach'}, (err) => {
     if(err) {
         console.log(err);
     }
     else {
-        console.log('Updated successfully!');
+        console.log('Successfully deleted!');
     }
 })
 
