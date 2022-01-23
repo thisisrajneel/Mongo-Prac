@@ -6,8 +6,15 @@ mongoose.connect('mongodb://localhost:27017/fruitsDB')
 
 // defining a schema
 const fruitSchema = new mongoose.Schema({
-    name: String,
-    rating: Number,
+    name: {
+        type: String,
+        required: [true, 'Name of the fruit is required!']
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 })
 
@@ -15,10 +22,11 @@ const fruitSchema = new mongoose.Schema({
 const Fruits = mongoose.model('Fruit', fruitSchema)
 
 const fruit = new Fruits({
-    name: 'Apple',
     rating: 4,
     review: 'Docs stay away!'
 })
+
+fruit.save()
 
 // practice
 const personSchema = new mongoose.Schema({
@@ -53,4 +61,14 @@ const litchi = {
 
 const arr = [mango, orange, litchi]
 
-Fruits.insertMany(arr, err => {console.log(err);})
+// Fruits.insertMany(arr, err => {console.log(err);})
+
+
+Fruits.find((err, fruits) => {
+    if(err) {
+        console.log(err);
+    }
+    else {
+        fruits.map(f => console.log(f.name));
+    }
+})
